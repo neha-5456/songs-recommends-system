@@ -1,0 +1,52 @@
+
+<html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+        body{
+            padding:5%;
+        }
+        select{
+            font-family: 'FontAwesome' , 'TATSanaChon';
+        }
+    </style>
+<body>
+   
+<div class="container">
+    <p><h1>Select Song</h1></p>
+    <form action='/' method="POST" > 
+	<select class="form-control" name='names'>
+      {% for i in names %}
+      <option value="{{ i }}" {% if i == user_song %}selected{% endif %}>{{ i }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit"> Submit</button>
+  </form>
+
+    <div><h1> Related Songs </h1>
+        <div class="row">
+               <h2>Recommendations based on your choice: "{{ user_song }}"</h2>
+                {% for x in songs %}
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                                
+                                <img src="{{ url_for('static', filename='music.jpg') }}" class="card-img-top" alt="...">
+                                <p class="card-text">{{x}}</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div>
+                        </div>
+                      
+                     
+                {% endfor %}
+          </div>
+        </div>
+    </div>
+</div>
+</body>
+ </html>
